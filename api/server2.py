@@ -7,21 +7,21 @@ app = Flask(__name__)
 ##########Pedidos###########
 @app.route("/pedido", methods = ['GET'])
 def getPedidos():
-  return (listarPedidos)
+  return (listarPedidos.read())
 
 
 @app.route("/pedido", methods = ['POST'])
 def postPedido():
-  return (generarPedido)
+  return (generarPedido.write())
 
 ###########Conductores##########
 @app.route("/conductores", methods = ['GET'])
 def getConductores():
-  return (listarConductores)
+  return (listarConductores.read())
 
 @app.route("/conductores", methods = ['POST'])
 def postConductor():
-  return (crearConductor)
+  return (crearConductor.write())
 
 
 if __name__ == "__main__":

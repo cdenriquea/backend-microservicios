@@ -5,7 +5,7 @@ from bson import json_util
 
 class generarPedido:
     def write():
-        con = conexion
+        con = conexion.conect()
         #recibir datos
         cliente = request.json['cliente']
         documento = request.json['documento']
@@ -32,7 +32,7 @@ class generarPedido:
 
 class listarPedidos:
     def read():
-        con = conexion
+        con = conexion.conect()
         pedidos = con.pedidos.find()
         response = json_util.dumps(pedidos)
 

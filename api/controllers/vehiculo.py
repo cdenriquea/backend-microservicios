@@ -5,7 +5,7 @@ from bson import json_util
 
 class crearConductor:
     def write():
-        con = conexion
+        con = conexion.conect()
         #recibir datos
         nombre = request.json['nombre']
         vehiculo = request.json['vehiculo']
@@ -24,7 +24,7 @@ class crearConductor:
 
 class listarConductores:
     def read():
-        con = conexion
+        con = conexion.conect()
         pedidos = con.conductores.find()
         response = json_util.dumps(pedidos)
 

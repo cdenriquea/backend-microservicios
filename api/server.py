@@ -38,10 +38,38 @@ def postOne():
                 'id':str(id),
                 'cliente': cliente,'documento':documento,'fecha':fecha,'cantidad': cantidad,'pais':pais,
                 'direccion':direccion,'departamento':departamento, 'ciudad': ciudad
-        }
+            }
             return response
         else:
             {'mensaje': 'Faltan datos'}
+
+###########Conductores##########
+@app.route("/conductores", methods = ['POST'])
+def postConductor():
+        con = conexion
+        #recibir datos
+        nombre = request.json['nombre']
+        vehiculo = request.json['vehiculo']
+        placa = request.json['placa']
+        if nombre and vehiculo and placa:
+            id= con.conductores.insert_one(
+                {'vehiculo': vehiculo,'nombre':nombre,'placa':placa}
+            )
+            response = {
+                'id':str(id),
+                'vehiculo': vehiculo,'nombre':nombre,'placa':placa
+            }
+            return response
+        else:
+            {'mensaje': 'Faltan datos'}
+
+@app.route("/conductores", methods = ['GET'])
+def getConductores():
+        con = conexion
+        pedidos = con.conductores.find()
+        response = json_util.dumps(pedidos)
+
+        return Response(response, mimetype = 'application/json')
 
 
 if __name__ == "__main__":
