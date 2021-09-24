@@ -1,16 +1,27 @@
 from flask import Flask, request
-from controllers.pedido import generarPedidos, listarPedidos
+from controllers.pedido import generarPedido, listarPedidos
+from controllers.vehiculo import listarConductores, crearConductor
 
 app = Flask(__name__)
 
-
+##########Pedidos###########
 @app.route("/pedido", methods = ['GET'])
-def getAll():
+def getPedidos():
   return (listarPedidos)
 
+
 @app.route("/pedido", methods = ['POST'])
-def postOne():
-  return (generarPedidos)
+def postPedido():
+  return (generarPedido)
+
+###########Conductores##########
+@app.route("/conductores", methods = ['GET'])
+def getConductores():
+  return (listarConductores)
+
+@app.route("/conductores", methods = ['POST'])
+def postConductor():
+  return (crearConductor)
 
 
 if __name__ == "__main__":

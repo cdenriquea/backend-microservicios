@@ -3,7 +3,7 @@ from db.mongodb import conexion
 from bson import json_util
 
 
-class generarPedidos:
+class generarPedido:
     def write():
         con = conexion
         #recibir datos
