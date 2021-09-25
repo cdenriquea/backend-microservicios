@@ -38,7 +38,7 @@ def postConductor():
     return (crearConductor.write())
 
 
-@app.route("/actualizar", methods=['POST'])
+@app.route("/actualizar", methods=['PUT'])
 def postConductor2():
     response = crearConductor.actualizar()
     return (response)
