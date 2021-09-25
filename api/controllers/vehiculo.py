@@ -32,14 +32,14 @@ class crearConductor:
 
 class listarConductores:
     def read():
-        myquery = {"estado": {"$ne": 2}}
+        myquery = {"estado": {"$ne": "2"}}
         pedidos = db.conductores.find(myquery)
         response = json_util.dumps(pedidos)
 
         return Response(response, mimetype='application/json')
 
     def read2():
-        myquery = {"estado": {"$eq": 2}}
+        myquery = {"estado": {"$eq": "2"}}
         pedidos = db.conductores.find(myquery)
         response = json_util.dumps(pedidos)
 
