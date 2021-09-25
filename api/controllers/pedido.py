@@ -3,12 +3,9 @@ from db.mongodb import db
 from bson import json_util
 
 
-
-
-
 class generarPedido:
     def write():
-        #recibir datos
+        # recibir datos
         cliente = request.json['cliente']
         documento = request.json['documento']
         fecha = request.json['fecha']
@@ -19,22 +16,23 @@ class generarPedido:
         ciudad = request.json['ciudad']
         direccion = request.json['direccion']
         if cliente and producto and direccion:
-            id= db.pedidos.insert_one(
-                {'cliente': cliente,'documento':documento,'fecha':fecha,'cantidad': cantidad,'pais':pais,
-                'direccion':direccion,'departamento':departamento, 'ciudad': ciudad}
+            id = db.pedidos.insert_one(
+                {'cliente': cliente, 'documento': documento, 'fecha': fecha, 'cantidad': cantidad, 'pais': pais,
+                 'direccion': direccion, 'departamento': departamento, 'ciudad': ciudad}
             )
             response = {
-                'id':str(id),
-                'cliente': cliente,'documento':documento,'fecha':fecha,'cantidad': cantidad,'pais':pais,
-                'direccion':direccion,'departamento':departamento, 'ciudad': ciudad
-        }
+                'id': str(id),
+                'cliente': cliente, 'documento': documento, 'fecha': fecha, 'cantidad': cantidad, 'pais': pais,
+                'direccion': direccion, 'departamento': departamento, 'ciudad': ciudad
+            }
             return response
         else:
             {'mensaje': 'Faltan datos'}
+
 
 class listarPedidos:
     def read():
         pedidos = db.pedidos.find()
         response = json_util.dumps(pedidos)
 
-        return Response(response, mimetype = 'application/json')
+        return Response(response, mimetype='application/json')
