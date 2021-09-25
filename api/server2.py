@@ -1,8 +1,10 @@
 from flask import Flask, request
 from controllers.pedido import generarPedido, listarPedidos
 from controllers.vehiculo import listarConductores, crearConductor
+from db.mongodb import db
 
 app = Flask(__name__)
+
 
 ##########Pedidos###########
 @app.route("/pedido", methods = ['GET'])
@@ -24,6 +26,5 @@ def postConductor():
   return (crearConductor.write())
 
 
-if __name__ == "__main__":
-  app.run(host = '0.0.0.0',port=5000, debug= True)
+app.run(host = '0.0.0.0',port=5000, debug= True)
     

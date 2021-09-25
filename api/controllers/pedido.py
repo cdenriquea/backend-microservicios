@@ -1,11 +1,13 @@
 from flask import jsonify, request, Response
-from db.mongodb import conexion
+from db.mongodb import db
 from bson import json_util
+
+
+
 
 
 class generarPedido:
     def write():
-        con = conexion.conect()
         #recibir datos
         cliente = request.json['cliente']
         documento = request.json['documento']
@@ -17,7 +19,7 @@ class generarPedido:
         ciudad = request.json['ciudad']
         direccion = request.json['direccion']
         if cliente and producto and direccion:
-            id= con.pedidos.insert_one(
+            id= db.pedidos.insert_one(
                 {'cliente': cliente,'documento':documento,'fecha':fecha,'cantidad': cantidad,'pais':pais,
                 'direccion':direccion,'departamento':departamento, 'ciudad': ciudad}
             )
@@ -32,8 +34,7 @@ class generarPedido:
 
 class listarPedidos:
     def read():
-        con = conexion.conect()
-        pedidos = con.pedidos.find()
+        pedidos = db.pedidos.find()
         response = json_util.dumps(pedidos)
 
         return Response(response, mimetype = 'application/json')

@@ -1,10 +1,9 @@
 from flask import Flask, request, Response
 from bson import json_util
 from pymongo import MongoClient
-#from flask_cors import CORS
 
 app = Flask(__name__)
-#CORS(app)
+
 client = MongoClient("mongodb+srv://yeison:disPassword@distribucion.xbbj9.mongodb.net/distribucion?retryWrites=true&w=majority")
 conexion = client['disData']
 
@@ -70,7 +69,6 @@ def getConductores():
         response = json_util.dumps(pedidos)
 
         return Response(response, mimetype = 'application/json')
-
 
 if __name__ == "__main__":
   app.run(host = '0.0.0.0',port=5000, debug= True)
