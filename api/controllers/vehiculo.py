@@ -46,7 +46,7 @@ class listarConductores:
         return Response(response, mimetype='application/json')
 
     def asignar_pedido(lat, lon, cliente):
-        disponibles = db.conductores.update({"estado": 0},
+        disponibles = db.conductores.update({"estado": "0"},
                                             {"$set": {"estado": "1", "lon": lon, "latitud": lat, "cliente": cliente}}, upsert=True)
         response = json_util.dumps(disponibles)
 
